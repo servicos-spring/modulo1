@@ -32,18 +32,20 @@ public class PersonController {
     }
 
 
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id}")
     public PersonResponse update(@PathVariable String id, @Valid @RequestBody PersonRequest request){
         Person person = PersonAdapterController.cast(request);
         return PersonAdapterController.cast(service.update(id, person));
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
     public PersonResponse findById(@PathVariable String id){
         return PersonAdapterController.cast(service.findById(id));
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void delete(@PathVariable String id){
         service.delete(id);

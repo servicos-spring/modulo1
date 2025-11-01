@@ -30,7 +30,7 @@ public class PersonRepositoryImpl implements PersonRepository {
         try {
             Optional<PersonOrm> exist = repository.findById(person.id());
 
-            if(exist.isEmpty()){
+            if(exist.isPresent()){
                 throw new BadRequestException("Pessoa já cadastrada");
             }
 
