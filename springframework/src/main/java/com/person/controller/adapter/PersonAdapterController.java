@@ -20,10 +20,10 @@ public class PersonAdapterController {
 
     public static PersonResponse cast(Person person){
         return new PersonResponse(
-                UUID.randomUUID().toString(),
+                person.id(),
                 person.name(),
                 person.birthDate(),
-                true
+                person.active()
         );
     }
 }

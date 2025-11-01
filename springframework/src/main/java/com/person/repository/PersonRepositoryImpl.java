@@ -28,9 +28,9 @@ public class PersonRepositoryImpl implements PersonRepository {
     @Override
     public Person save(Person person) {
         try {
-            boolean exist = repository.findById(person.id()).isPresent();
+            Optional<PersonOrm> exist = repository.findById(person.id());
 
-            if(exist){
+            if(exist.isEmpty()){
                 throw new BadRequestException("Pessoa já cadastrada");
             }
 
@@ -82,12 +82,12 @@ public class PersonRepositoryImpl implements PersonRepository {
     @Override
     public Person findById(String id) {
         try{
-            boolean exist = repository.findByIdAndActiveTrue(id).isPresent();
-            if(!exist){
+            Optional<PersonOrm> person = repository.findByIdAndActiveTrue(id);
+            if(person.isEmpty()){
                 throw new NotFoundException("Pessoa não encontrada");
             }
 
-            return PersonRepositoryAdapter.cast(repository.findById(id).get());
+            return PersonRepositoryAdapter.cast(person.get());
         } catch (NotFoundException ex) {
             LOG.error("Pessoa não encontrada");
             throw ex;
