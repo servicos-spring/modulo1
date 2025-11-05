@@ -51,7 +51,7 @@
             <artifactId>logback-gelf</artifactId>
             <version>4.0.0</version>
         </dependency>
-    -   -
+
         <!-- ASPECTJ -->
         <dependency>
             <groupId>org.aspectj</groupId>
