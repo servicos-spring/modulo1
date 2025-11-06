@@ -8,9 +8,9 @@ import java.time.LocalDate;
 @Document("persons")
 public record PersonOrm (
     @Id
-    String id,
-    String name,
-    LocalDate birthDate,
-    boolean active
+    String ID,
+    String NOME,
+    LocalDate DT_NASCIMENTO,
+    boolean ATIVO
 ){
 }

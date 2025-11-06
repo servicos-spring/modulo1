@@ -11,6 +11,6 @@ import java.util.Optional;
 
 @Repository
 public interface PersonRepositoryWithMongo extends MongoRepository<PersonOrm, String> {
-    Page<PersonOrm> findByActiveTrue(Pageable pageable);
-    Optional<PersonOrm> findByIdAndActiveTrue(String id);
+    Page<PersonOrm> findByATIVOTrue(Pageable pageable);
+    Optional<PersonOrm> findByIDAndATIVOTrue(String id);
 }

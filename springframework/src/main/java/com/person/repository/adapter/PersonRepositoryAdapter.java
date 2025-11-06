@@ -10,10 +10,10 @@ import java.util.List;
 public class PersonRepositoryAdapter {
     public static Person cast(PersonOrm person){
         return new Person(
-                person.id(),
-                person.name(),
-                person.birthDate(),
-                person.active()
+                person.ID(),
+                person.NOME(),
+                person.DT_NASCIMENTO(),
+                person.ATIVO()
         );
     }
 
@@ -29,10 +29,10 @@ public class PersonRepositoryAdapter {
     public static Page<Person> cast(Page<PersonOrm> perons){
         return perons.map(pessoaOrm ->
                 new Person(
-                        pessoaOrm.id(),
-                        pessoaOrm.name(),
-                        pessoaOrm.birthDate(),
-                        pessoaOrm.active()
+                        pessoaOrm.ID(),
+                        pessoaOrm.NOME(),
+                        pessoaOrm.DT_NASCIMENTO(),
+                        pessoaOrm.ATIVO()
                 )
         );
     }

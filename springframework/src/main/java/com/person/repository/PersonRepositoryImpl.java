@@ -48,7 +48,7 @@ public class PersonRepositoryImpl implements PersonRepository {
     @Override
     public Person update(String id, Person person) {
         try {
-            boolean exist = repository.findByIdAndActiveTrue(id).isPresent();
+            boolean exist = repository.findByIDAndATIVOTrue(id).isPresent();
             if(!exist){
                 throw new NotFoundException("Pessoa não encontrada");
             }
@@ -72,7 +72,7 @@ public class PersonRepositoryImpl implements PersonRepository {
     @Override
     public Page<Person> findAll(Pageable page) {
         try {
-            return PersonRepositoryAdapter.cast(repository.findByActiveTrue(page));
+            return PersonRepositoryAdapter.cast(repository.findByATIVOTrue(page));
         } catch (Exception ex) {
             LOG.error("Erro ao encontrar pessoas: {} o erro aconteceu na data/hora: {}", ex.getMessage(), LocalDateTime.now());
             throw new InternalServerException(ex);
@@ -82,7 +82,7 @@ public class PersonRepositoryImpl implements PersonRepository {
     @Override
     public Person findById(String id) {
         try{
-            Optional<PersonOrm> person = repository.findByIdAndActiveTrue(id);
+            Optional<PersonOrm> person = repository.findByIDAndATIVOTrue(id);
             if(person.isEmpty()){
                 throw new NotFoundException("Pessoa não encontrada");
             }
