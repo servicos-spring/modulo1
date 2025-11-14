@@ -13,7 +13,104 @@ Os logs da aplicação devem ser enviados ao Graylog.
 
 No seu docker-compose, adicione todas as imagens utilizadas (banco de dados, Graylog, aplicação, etc.).
 
+# Rotas
+## POST `/v1/persons`
+### request
+```json
+{
+    "name": "João Enrique Barbosa",
+    "birthDate": "2005-08-13"
+}
+```
+
+### response
+```json
+{
+    "id": "b51a0c58-8fa7-49f5-93e0-3c11c1f097c9",
+    "name": "João Enrique Barbosa",
+    "birthDate": "2005-08-13",
+    "active": true
+}
+```
+
+## PUT `/v1/persons/{id}`
+### request
+```json
+{
+    "name": "João Enrique Barbosa",
+    "birthDate": "2005-08-15"
+}
+```
+
+### response
+```json
+{
+    "id": "b51a0c58-8fa7-49f5-93e0-3c11c1f097c9",
+    "name": "João Enrique Barbosa",
+    "birthDate": "2005-08-15",
+    "active": true
+}
+```
+
+## DELETE `/v1/persons/{id}`
+Sem request e response
+
+## GET `/v1/persons/{id}`
+### response
+```json
+{
+    "id": "b51a0c58-8fa7-49f5-93e0-3c11c1f097c9",
+    "name": "João Enrique Barbosa",
+    "birthDate": "2005-08-15",
+    "active": true
+}
+```
+
+## GET `/v1/persons?page=0`
+### response
+```json
+{
+    "content": [
+        {
+            "id": "b51a0c58-8fa7-49f5-93e0-3c11c1f097c9",
+            "name": "João Enrique Barbosa",
+            "birthDate": "2005-08-13",
+            "active": true
+        }
+    ],
+    "pageable": {
+        "pageNumber": 0,
+        "pageSize": 10,
+        "sort": {
+            "empty": true,
+            "unsorted": true,
+            "sorted": false
+        },
+        "offset": 0,
+        "unpaged": false,
+        "paged": true
+    },
+    "last": true,
+    "totalPages": 1,
+    "totalElements": 1,
+    "first": true,
+    "size": 10,
+    "number": 0,
+    "numberOfElements": 1,
+    "sort": {
+        "empty": true,
+        "unsorted": true,
+        "sorted": false
+    },
+    "empty": false
+}
+```
+
+
 # Arquitetura
+Banco: MongoDB
+Logs: Graylog
+
 ## domain/
 
 Contém toda a regra de negócio pura, independente de framework.
@@ -47,3 +144,4 @@ adapter/ – Adapta o PersonRepository do domínio para a implementação concre
 client/ – Cliente específico (ex.: comunicação com Mongo).
 
 orm/ – Modelo de persistência (ex.: PersonOrm) e implementação (PersonRepositoryImpl).
+
